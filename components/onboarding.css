@@ -1,0 +1,233 @@
+/* Shared account and store onboarding. The page owns its theme and controls. */
+.onboarding-page {
+  --auth-bg: #f4efe3;
+  --auth-surface: #fcfbf8;
+  --auth-input: #fff;
+  --auth-text: #071b35;
+  --auth-muted: #56606a;
+  --auth-accent: #6f1029;
+  --auth-border: #8f8476;
+  --auth-divider: #e6e1d6;
+  --auth-action: #6f1029;
+  --auth-action-text: #fff;
+  --auth-error: #802c29;
+  --auth-error-bg: #fff1ee;
+  --auth-success: #235b37;
+  --auth-success-bg: #eaf5eb;
+  color-scheme: light;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  background: var(--auth-bg);
+  color: var(--auth-text);
+  overflow-wrap: anywhere;
+}
+
+.onboarding-header {
+  background: var(--auth-surface);
+  border-bottom: 1px solid var(--auth-divider);
+}
+
+.onboarding-header > :not(.brand) {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--auth-accent);
+  text-align: end;
+}
+
+.onboarding-card {
+  display: grid;
+  gap: 16px;
+  width: min(100% - 24px, 36rem);
+  margin: clamp(16px, 4vw, 42px) auto;
+  padding: clamp(16px, 4vw, 32px);
+  background: var(--auth-surface);
+  border: 1px solid var(--auth-divider);
+  border-radius: 16px;
+}
+
+.onboarding-card h1 {
+  margin: 0;
+  font-size: clamp(26px, 6vw, 36px);
+  line-height: 1.3;
+}
+
+.onboarding-card p { margin: 0; }
+.onboarding-card small { font-size: .875rem; color: var(--auth-muted); }
+
+.onboarding-card .eyebrow {
+  color: var(--auth-accent);
+  font-size: .875rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.onboarding-footer {
+  margin-block-start: auto;
+  padding: 16px max(12px, env(safe-area-inset-right))
+    calc(16px + env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  text-align: center;
+  color: var(--auth-muted);
+  font-size: .875rem;
+}
+
+.onboarding-form,
+.account-choice-followup,
+.account-type-choices,
+.account-social-buttons,
+.onboarding-fields,
+.onboarding-confirmation,
+.account-link-settings {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.onboarding-form label,
+.onboarding-field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  font-weight: 600;
+}
+
+.onboarding-form :is(input:not([type=checkbox]):not([type=radio]), select, textarea) {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 9px 12px;
+  border: 1px solid var(--auth-border);
+  border-radius: 8px;
+  background: var(--auth-input);
+  color: var(--auth-text);
+  font-size: 16px;
+  font-weight: 400;
+  cursor: text;
+}
+
+.onboarding-form :is(input[type=email], input[type=tel], input[type=url], input[autocomplete="one-time-code"]) {
+  direction: ltr;
+  text-align: match-parent;
+}
+
+.onboarding-form select { cursor: pointer; }
+.onboarding-form textarea { resize: vertical; }
+
+.onboarding-form .onboarding-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 44px;
+  font-weight: 400;
+}
+
+.onboarding-consent input { flex: none; width: 20px; height: 20px; accent-color: var(--auth-action); }
+
+.onboarding-page :where(.primary-btn, .outline-btn, .account-social-buttons button, .account-type-choices button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 46px;
+  padding: 9px 12px;
+  border: 1px solid var(--auth-border);
+  border-radius: 9px;
+  background: var(--auth-input);
+  color: var(--auth-text);
+  text-align: center;
+  font-weight: 700;
+}
+
+.onboarding-page .primary-btn {
+  background: var(--auth-action);
+  color: var(--auth-action-text);
+  border-color: var(--auth-action);
+}
+
+.onboarding-page button:disabled { opacity: .6; cursor: not-allowed; }
+
+.onboarding-text-button,
+.onboarding-card .account-register-prompt a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  background: transparent;
+  border: 0;
+  color: var(--auth-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.account-back-button { justify-self: start; }
+.onboarding-page .account-type-choices button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 2px 12px;
+  align-items: start;
+  padding: 14px;
+  text-align: start;
+}
+.account-type-choices button svg { grid-row: span 2; margin-block-start: 3px; color: var(--auth-accent); }
+.account-type-choices button small { grid-column: 2; font-weight: 400; }
+
+.account-divider { display: flex; align-items: center; gap: 12px; color: var(--auth-muted); }
+.account-divider::before,
+.account-divider::after { content: ''; flex: 1; border-block-start: 1px solid var(--auth-divider); }
+
+.onboarding-page .auth-password-field { position: relative; min-width: 0; }
+.onboarding-form .auth-password-field input { padding-inline-end: 52px; }
+.onboarding-page .auth-password-toggle {
+  position: absolute;
+  inset-block: 1px;
+  inset-inline-end: 1px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--auth-text);
+}
+
+.onboarding-page :focus-visible { outline: 2px solid var(--auth-accent); outline-offset: 3px; }
+.onboarding-page .auth-password-toggle:focus-visible { outline-offset: -3px; }
+
+.onboarding-step { display: flex; align-items: center; gap: 10px; color: var(--auth-accent); }
+.onboarding-step b { display: grid; place-items: center; flex: 0 0 28px; height: 28px; border: 1px solid currentColor; border-radius: 50%; }
+.onboarding-confirmation,
+.onboarding-message { padding: 12px; border: 1px solid currentColor; border-radius: 8px; }
+.onboarding-page .onboarding-message.error { color: var(--auth-error); background: var(--auth-error-bg); }
+.onboarding-page .onboarding-message.success { color: var(--auth-success); background: var(--auth-success-bg); }
+
+@media (min-width: 34rem) {
+  .onboarding-page .account-social-buttons,
+  .onboarding-page .onboarding-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-color-scheme: dark) {
+  .onboarding-page {
+    color-scheme: dark;
+    --auth-bg: #151820;
+    --auth-surface: #202530;
+    --auth-input: #171b23;
+    --auth-text: #f7f2ea;
+    --auth-muted: #c5c1bd;
+    --auth-accent: #ffb8c4;
+    --auth-border: #8d8b92;
+    --auth-divider: #414754;
+    --auth-action: #f1aab9;
+    --auth-action-text: #300915;
+    --auth-error: #ffccc5;
+    --auth-error-bg: #482925;
+    --auth-success: #b8ebc7;
+    --auth-success-bg: #213b2b;
+  }
+}

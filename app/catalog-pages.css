@@ -1,0 +1,130 @@
+/* Keep the public catalog on the same light palette as the discovery page. */
+:is(.directory, .store-page, .cc-category-page, .cc-location-page) {
+  --catalog-paper: #fcfbf8;
+  --catalog-cream: #f4efe3;
+  --catalog-navy: #071b35;
+  --catalog-accent: #6f1029;
+  --catalog-muted: #56606a;
+  --catalog-line: #e6e1d6;
+  color-scheme: light;
+  background: var(--catalog-paper);
+  color: var(--catalog-navy);
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-wrap: anywhere;
+}
+
+.store-page-header { background: #fff; border-block-end: 1px solid var(--catalog-line); }
+
+:is(.directory, .cc-category-page, .cc-location-page) {
+  padding: clamp(20px, 5vw, 56px) max(4%, calc((100% - 72rem) / 2));
+}
+
+.cc-catalog-header { display: flex; align-items: center; margin-block-end: 24px; }
+
+.store-profile {
+  max-width: 75rem;
+  margin-inline: auto;
+  padding: 16px 4% 48px;
+}
+
+:is(.directory, .store-profile, .cc-category-page, .cc-location-page) h1 {
+  margin: 8px 0;
+  font-size: clamp(27px, 5vw, 42px);
+  line-height: 1.3;
+}
+
+:is(.directory, .store-profile) .eyebrow {
+  color: var(--catalog-accent);
+  font-size: .875rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+:is(.directory-grid, .simple-product-grid, .cc-category-page .cc-products-grid, .cc-location-page section > ul) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: 14px;
+  padding: 0;
+  margin: 16px 0 0;
+  list-style: none;
+}
+
+:is(.directory-card, .simple-product, .cc-category-page .cc-product-card, .cc-location-page li) {
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--catalog-line);
+  border-radius: 10px;
+}
+
+:is(.directory-card, .simple-product, .cc-category-page .cc-product-card, .cc-location-page li, .store-cover) img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--catalog-cream);
+}
+
+.directory-card > div { padding: 12px; }
+.directory-card :is(h2, p) { margin: 4px 0; }
+.directory-card h2 { font-size: 1.125rem; line-height: 1.4; }
+.directory-card :is(p, span), .cc-location-page .cc-store-address { color: var(--catalog-muted); }
+.directory-card b { color: var(--catalog-accent); }
+
+.store-cover { overflow: hidden; border-radius: 12px; }
+.store-cover img { aspect-ratio: 16 / 9; }
+
+.store-profile-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-block: 16px 28px;
+}
+.store-profile-body > div { flex: 1 1 20rem; min-width: 0; }
+.store-profile-body p, .store-products > p { margin: 4px 0; color: var(--catalog-muted); }
+.store-products h2 { margin: 0; }
+.store-offers { margin-top: 24px; padding: 16px; background: var(--catalog-cream); border-radius: 10px; }
+.store-offers code { overflow-wrap: anywhere; }
+
+.simple-product { position: relative; display: grid; align-content: start; gap: 4px; }
+.simple-product > :is(b, span, .product-location-link) { margin-inline: 12px; }
+.simple-product > span { color: var(--catalog-muted); }
+.simple-product .cc-discount-ribbon { margin: 0; }
+
+:is(.store-page-header > a, .back-home, .visit-button, .product-location-link, .cc-product-back, .cc-product-store-link) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 700;
+}
+
+:is(.back-home, .product-location-link, .store-page-header > a:not(.brand)) { color: var(--catalog-accent); }
+.visit-button { padding: 8px 14px; border-radius: 8px; background: var(--catalog-accent); color: #fff; }
+.cc-product-page .cc-product-detail-photo,
+.cc-product-page .cc-product-detail-photo img { min-height: 0; }
+.cc-product-detail-photo img { height: auto; aspect-ratio: 4 / 5; object-fit: contain; }
+
+.cc-location-page section { margin-block-start: 24px; }
+.cc-location-page section h2 { margin-block-end: 0; }
+.cc-location-page .cc-store-card { border-color: var(--catalog-line); }
+:is(.cc-category-page, .cc-location-page) li > a,
+.cc-category-page .cc-product-card > a { display: block; }
+:is(.cc-category-page, .cc-location-page) :is(.cc-product-card, .cc-store-card) :is(h2, h3, p) {
+  margin: 8px 12px;
+  line-height: 1.45;
+}
+
+:is(.directory, .store-page, .cc-category-page, .cc-location-page) :focus-visible {
+  outline: 2px solid var(--catalog-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 35rem) {
+  :is(.directory-grid, .simple-product-grid, .cc-category-page .cc-products-grid, .cc-location-page section > ul) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

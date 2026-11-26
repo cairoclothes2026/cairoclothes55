@@ -1,0 +1,23 @@
+.shopper-plans { background: #faf9f6; color: #101f34; min-height: 78vh; }
+.plans-content { max-width: 74rem; margin: auto; padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 4vw, 3rem); }
+.plans-intro { max-width: 48rem; margin-block-end: 2rem; }
+.plans-intro h1 { font-size: clamp(2.25rem, 5vw, 4rem); line-height: 1.25; margin: .65rem 0; }
+.plans-intro p { line-height: 1.7; }
+.plans-status { color: #71132e; font-weight: 700; }
+.plans-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.plan-card { background: white; border: 1px solid #d9d5cc; border-top: 4px solid #142c49; border-radius: 18px; padding: clamp(1.25rem, 2.6vw, 2rem); }
+.plan-discover { border-top-color: #71132e; }
+.plan-privilege { background: #10263f; border-color: #10263f; border-top-color: #d8ad57; color: #fffaf1; }
+.plan-heading { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.plan-heading h2 { font-size: 1.4rem; margin: 0; color: inherit; }
+.plan-privilege .plan-heading svg { color: #ebca86; }
+.plan-price { margin: 1.4rem 0 .2rem; line-height: 1.2; }
+.plan-price strong { font-size: 3rem; font-variant-numeric: tabular-nums; }
+.plan-term { margin: 0; }
+.plan-card ul { margin: 1.4rem 0 0; padding: 1.2rem 0 0; border-top: 1px solid #918b805c; list-style: none; display: grid; gap: .75rem; }
+.plan-card li { display: flex; align-items: baseline; line-height: 1.55; gap: .6rem; }
+.plan-card li svg { flex: none; align-self: flex-start; margin-top: .2rem; }
+.plans-help { margin-top: 1.4rem; border-block: 1px solid #d9d5cc; }
+.plans-help summary { cursor: pointer; padding: 1rem .2rem; font-weight: 700; }
+.plans-help p { max-width: 58rem; margin: 0 0 1rem; line-height: 1.7; }
+@media (max-width: 740px) { .plans-grid { grid-template-columns: 1fr; } .plan-price { margin-top: .7rem; } }

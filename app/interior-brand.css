@@ -1,0 +1,131 @@
+/* Interior pages share the public storefront palette and straight-edged controls. */
+:is(.onboarding-page, .store-page, .directory, .cc-category-page, .cc-location-page,
+    .cc-legal-page, .admin-shell, .dash-shell.merchant-products-page) {
+  color-scheme: light;
+  --paper: #fcfbf8;
+  --view-muted: #4f5c68;
+  --muted: #4f5c68;
+  background: var(--cream);
+  color: var(--navy);
+}
+
+:is(.onboarding-header, .store-page-header, .cc-legal-header, .cc-catalog-header) {
+  background: #fcfbf8;
+  border-block-end: 1px solid #ded8ce;
+  flex-wrap: wrap;
+}
+.cc-catalog-header { padding-block: 12px; }
+
+.onboarding-page .onboarding-card, .cc-legal-page .cc-legal-document,
+.admin-shell .admin-panel, .admin-shell .admin-review-card, .admin-auth-card,
+.directory .directory-card, .store-page .simple-product,
+.cc-category-page .cc-product-card, .cc-location-page section > ul > li {
+  border: 1px solid #ded8ce;
+  border-radius: 16px;
+  background: #fcfbf8;
+  box-shadow: none;
+}
+.onboarding-page .onboarding-card, .cc-legal-page .cc-legal-document {
+  border-block-start: 3px solid var(--burgundy);
+}
+.onboarding-card::before { display: none; }
+.onboarding-page :is(.primary-btn, .outline-btn, .account-type-choices button,
+    .account-social-buttons button, .onboarding-form input, .onboarding-form select),
+.merchant-products-page :is(.primary-btn, .outline-btn), .admin-shell :is(.primary-btn, .outline-btn) {
+  border-radius: 10px;
+}
+.onboarding-page .onboarding-header .brand-copy small,
+.onboarding-page .onboarding-footer { color: #485563; }
+.onboarding-page .account-divider > span { color: #485563; }
+
+/* Layer the account flow with the storefront navy, ivory, gold, and burgundy palette. */
+body .onboarding-page {
+  --auth-bg: #071b35;
+  background: linear-gradient(145deg, #071b35 0%, #102b4d 52%, #6f1029 130%) !important;
+}
+body .onboarding-page .onboarding-header { background: #fcfbf8; }
+body .onboarding-page .onboarding-card {
+  border-color: rgba(217, 164, 65, .42);
+  box-shadow: 0 22px 56px rgba(7, 27, 53, .2);
+}
+body .onboarding-page .account-type-choices button {
+  border-color: #d8d0c1;
+  background: #f4efe3;
+}
+body .onboarding-page .account-type-choices button:hover,
+body .onboarding-page .account-type-choices button:focus-visible {
+  border-color: #d9a441;
+  background: #e8edf4;
+}
+body .onboarding-page .onboarding-footer { color: #e5eaf0; }
+body .onboarding-page .onboarding-footer a { color: #f0c56d; }
+
+/* Use the storefront palette across the public catalog. */
+:root body :is(.directory, .store-page, .cc-category-page, .cc-location-page) {
+  background: #f1f4f7;
+}
+body :is(.store-page-header, .cc-catalog-header) {
+  background: #071b35;
+  border-block-end: 2px solid #d9a441;
+}
+body .cc-catalog-header {
+  padding-inline: clamp(12px, 2vw, 24px);
+  border-radius: 12px;
+}
+body :is(.store-page-header, .cc-catalog-header) .brand .cc-wordmark { color: #fff; }
+body :is(.store-page-header, .cc-catalog-header) .brand small { color: #ead5a6; }
+body .store-page-header > a:last-child:not(.brand) {
+  background: #fff;
+  color: #6f1029;
+}
+:root body .store-page.product-profile-page {
+  background: linear-gradient(150deg, #071b35, #102b4d 62%, #46223b);
+}
+.product-profile-page .cc-product-back {
+  color: #fff2d5;
+  text-decoration: underline;
+  text-underline-offset: .23em;
+}
+.product-profile-page .cc-product-detail {
+  background: #fff;
+  border: 1px solid #d3dbe3;
+  border-block-start: 3px solid #d9a441;
+  border-radius: 16px;
+  box-shadow: 0 16px 44px rgb(7 27 53 / 18%);
+}
+.product-profile-page .cc-product-detail-photo {
+  background: #fff;
+  border-radius: 12px;
+}
+.product-profile-page .cc-product-sizes span {
+  color: #102b4d;
+  background: #eef3f8;
+  border-color: #c8d4e0;
+}
+.product-profile-page .cc-product-store {
+  padding: clamp(14px, 2vw, 22px);
+  background: #f1f4f7;
+  border: 1px solid #d5dee7;
+  border-inline-start: 3px solid #6f1029;
+  border-radius: 12px;
+}
+.product-profile-page > .cc-data-message {
+  color: #fff;
+  background: #102b4d;
+}
+
+@media (max-width: 600px) {
+  body :is(.onboarding-page .onboarding-header, .store-page-header, .cc-catalog-header,
+           .cc-legal-header, .cc-location-header, .cc-home .cc-header) {
+    background: var(--cream, #f4efe3);
+  }
+  body :is(.store-page-header, .cc-catalog-header) .brand .cc-wordmark { color: var(--navy); }
+  body :is(.store-page-header, .cc-catalog-header) .brand small { color: #485563; }
+  body :is(.admin-sidebar, .merchant-products-page .dash-sidebar) > .brand-page {
+    padding: 8px 12px;
+    background: var(--cream, #f4efe3);
+    border-radius: 12px;
+  }
+  body :is(.admin-sidebar, .merchant-products-page .dash-sidebar) > .brand-page .brand-copy .cc-wordmark { color: var(--navy); }
+  body :is(.admin-sidebar, .merchant-products-page .dash-sidebar) > .brand-page .brand-copy small { color: #485563; }
+}

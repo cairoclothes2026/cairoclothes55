@@ -1,0 +1,11 @@
+set local lock_timeout = '2s';
+alter function public.set_updated_at() set search_path = pg_catalog;
+create index if not exists coupon_redemptions_customer_idx on public.coupon_redemptions(customer_profile_id);
+create index if not exists coupon_redemptions_verifier_idx on public.coupon_redemptions(verified_by_profile_id);
+create index if not exists coupons_product_idx on public.coupons(product_id);
+create index if not exists favorites_product_idx on public.favorites(product_id);
+create index if not exists platform_audit_actor_idx on public.platform_audit_log(actor_id);
+create index if not exists product_views_product_idx on public.product_views(product_id);
+create index if not exists product_views_profile_idx on public.product_views(profile_id);
+create index if not exists store_members_profile_idx on public.store_members(profile_id);
+create index if not exists stores_owner_idx on public.stores(owner_id);
