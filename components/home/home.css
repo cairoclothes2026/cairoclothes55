@@ -1567,6 +1567,6 @@ html[lang^="en"] body .cc-home[lang="en"] *:not(.cc-wordmark):not(.cc-wordmark *
   .cc-home[lang='en'] .cc-contact-row .cc-avail i { display: none; }
 }
 @media (max-width: 600px) {
-  html[lang^='en'] .cc-home .cc-grid .cc-card .cc-contact-row .cc-whatsapp,
-  html[lang^='en'] .cc-home .cc-grid .cc-card .cc-contact-row .whatsapp-short-label { font-weight: 700 !important; }
+  #discover .cc-grid .cc-card,
+  #discover .cc-grid .cc-card * { font-weight: 700 !important; }
 }
