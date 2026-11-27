@@ -1172,8 +1172,97 @@ html[lang^="en"] body .cc-home[lang="en"] *:not(.cc-wordmark):not(.cc-wordmark *
   .cc-mobile-more a { display: flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 8px; color: var(--cc-navy); font-size: 14px; }
   .cc-mobile-more a:hover { background: var(--cc-cream); color: var(--cc-burgundy); }
 
-  /* Remove the phone hero artwork and its overlaid copy so categories/search move up below the brand header. */
-  .cc-home-first-screen > .cc-hero { display: none; }
+  /* Mobile home follows the supplied commerce-app layout, without the ivory hero panel. */
+  .cc-home-first-screen > .cc-hero {
+    position: relative;
+    display: grid;
+    min-height: clamp(235px, 64vw, 300px);
+    height: auto;
+    overflow: hidden;
+    isolation: isolate;
+    background: #071b35;
+  }
+  .cc-home-first-screen > .cc-hero .cc-hero-media {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    min-height: 0;
+    height: 100%;
+    background: #071b35;
+  }
+  .cc-home-first-screen > .cc-hero .cc-hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
+  }
+  .cc-home-first-screen > .cc-hero .cc-hero-media::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    background: linear-gradient(0deg, rgba(7,27,53,.88) 0%, rgba(7,27,53,.58) 48%, rgba(7,27,53,.18) 100%);
+  }
+  .cc-home-first-screen > .cc-hero .cc-hero-copy,
+  .cc-home[lang='ar'] .cc-home-first-screen > .cc-hero .cc-hero-copy {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    align-content: end;
+    width: 100%;
+    min-height: clamp(235px, 64vw, 300px);
+    gap: 7px;
+    margin: 0;
+    padding: 24px 20px 22px;
+    overflow: visible;
+    background: transparent;
+    color: #f6ecdc;
+    text-align: start;
+  }
+  .cc-home-first-screen > .cc-hero .cc-hero-copy > .cc-eyebrow {
+    order: 0;
+    margin: 0;
+    color: #efbd65;
+    font-size: 16px;
+    line-height: 1.4;
+    transform: none;
+  }
+  .cc-home-first-screen > .cc-hero .cc-hero-copy h1 {
+    order: 1;
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    color: #f6ecdc;
+    font-size: 25px;
+    line-height: 1.25;
+    letter-spacing: 0;
+    text-align: start;
+    text-wrap: balance;
+  }
+  .cc-home-first-screen > .cc-hero .cc-hero-wordmark {
+    width: auto;
+    font-size: clamp(22px, 6.3vw, 28px);
+    letter-spacing: .035em;
+    line-height: 1.2;
+  }
+  .cc-home-first-screen > .cc-hero .cc-hero-title-detail,
+  .cc-home[lang='ar'] .cc-home-first-screen > .cc-hero .cc-hero-title-detail {
+    display: block;
+    width: 100%;
+    max-width: min(100%, 18em);
+    justify-self: start;
+    margin: 0;
+    color: #f6ecdc;
+    font-family: 'Aref Ruqaa', 'Alyamama Arabic', serif;
+    font-size: clamp(17px, 4.8vw, 20px);
+    font-weight: 400;
+    line-height: 1.5;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-shadow: 0 1px 8px rgba(0,0,0,.32);
+  }
+  .cc-home-first-screen > .cc-hero .cc-hero-lead,
+  .cc-home-first-screen > .cc-hero .cc-hero-actions { display: none; }
   .cc-home-first-screen > .cc-journey { display: none; }
 
   .cc-mobile-categories {
@@ -1430,3 +1519,7 @@ html[lang^="en"] body .cc-home[lang="en"] *:not(.cc-wordmark):not(.cc-wordmark *
 .cc-mobile-search .cc-search-balance { color: #f4d895; }
 .cc-home .cc-query-field input { width: 100%; box-sizing: border-box; }
 .cc-home .cc-query-field:has(.cc-search-balance) input { min-height: 26px; }
+
+@media (max-width: 600px) {
+  .cc-home .cc-home-first-screen > section.cc-hero { display: none !important; }
+}
