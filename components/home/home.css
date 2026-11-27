@@ -1074,7 +1074,17 @@ html[lang^="en"] body .cc-home[lang="en"] *:not(.cc-wordmark):not(.cc-wordmark *
   .cc-mobile-brand .cc-brand-text { min-width: 0; font-size: 22px; letter-spacing: .04em; }
   .cc-mobile-brand .cc-brand-text .cc-wordmark { white-space: nowrap; font-size: clamp(19px, 5.4vw, 24px); letter-spacing: .035em; }
   .cc-mobile-brand .cc-brand-text small { justify-self: start; color: var(--cc-muted); font-size: 9px; letter-spacing: .1em; }
-  .cc-home[lang='ar'] .cc-mobile-brand .cc-brand-text small { justify-self: end; direction: rtl; text-align: right; transform: none; }
+  .cc-home[lang='ar'] .cc-mobile-brand .cc-brand-text small {
+    display: block;
+    justify-self: end;
+    direction: rtl;
+    text-align: right;
+    transform: none;
+    letter-spacing: normal;
+    font-family: Arial, sans-serif !important;
+    font-size: 11px;
+    line-height: 1.5;
+  }
   .cc-home[lang='en'] .cc-hero-desktop-copy { display: inline; }
   .cc-home[lang='en'] .cc-hero-mobile-copy { display: none; }
   .cc-mobile-search {
@@ -1360,10 +1370,14 @@ html[lang^="en"] body .cc-home[lang="en"] *:not(.cc-wordmark):not(.cc-wordmark *
   .cc-home .cc-filters .cc-price { display: grid; grid-template-columns: 1fr; gap: 4px; }
   .cc-home .cc-chips { display: none; }
   .cc-home .cc-count { margin: 0 0 10px; font-size: 11px; }
-  .cc-home .cc-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 9px; }
+  .cc-home .cc-grid { grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(4px, 1.5vw, 8px); }
   .cc-home .cc-card { border-radius: 12px; overflow: hidden; }
   .cc-home .cc-card-media { aspect-ratio: 4 / 4.5; }
-  .cc-home .cc-card-body { gap: 5px; padding: 8px; }
+  .cc-home .cc-card-body { gap: 5px; padding: 6px; overflow-wrap: anywhere; }
+  .cc-home .cc-grid .cc-heart { width: 28px; height: 28px; top: 4px; inset-inline-end: 4px; }
+  .cc-home .cc-grid .cc-discount-ribbon { top: 4px; inset-inline-start: 4px; padding: 2px 4px; min-height: 21px; font-size: 10px; }
+  .cc-home .cc-grid .cc-store-line, .cc-home .cc-grid .cc-avail { gap: 3px; font-size: 11px; }
+  .cc-home .cc-grid .cc-whatsapp { gap: 3px; padding: 4px; font-size: 11px; line-height: 1.4; }
   .cc-home .cc-card-title h3 { font-size: 13px; }
   .cc-home .cc-price-tag { font-size: 12px; }
   .cc-home .cc-card-actions { grid-template-columns: 1fr; gap: 5px; }

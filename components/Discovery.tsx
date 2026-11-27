@@ -38,13 +38,14 @@ const EMPTY_AREAS: Area[] = [];
 const EMPTY_PRODUCTS: Product[] = [];
 const EMPTY_STORES: Store[] = [];
 
-// Match the product grid's two responsive breakpoints.
+// Keep store rows aligned with the responsive product grid.
 function subscribeGridWidth(notify: () => void) {
-  const queries = ['(max-width: 860px)', '(max-width: 1100px)'].map(query => window.matchMedia(query));
+  const queries = ['(max-width: 600px)', '(max-width: 860px)', '(max-width: 1100px)'].map(query => window.matchMedia(query));
   queries.forEach(query => query.addEventListener('change', notify));
   return () => queries.forEach(query => query.removeEventListener('change', notify));
 }
 function gridColumns() {
+  if (window.matchMedia('(max-width: 600px)').matches) return 3;
   if (window.matchMedia('(max-width: 860px)').matches) return 2;
   return window.matchMedia('(max-width: 1100px)').matches ? 3 : 5;
 }
