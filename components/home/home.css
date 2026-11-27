@@ -1557,3 +1557,7 @@ html[lang^="en"] body .cc-home[lang="en"] *:not(.cc-wordmark):not(.cc-wordmark *
   .cc-contact-row .cc-avail i { width: 4px; height: 4px; }
   .cc-home .cc-store-line b { text-decoration: underline; text-underline-offset: 2px; }
 }
+@media (max-width: 360px) {
+  .cc-home[lang='en'] .cc-card-body { padding-inline: 3px; }
+  .cc-home[lang='en'] .cc-contact-row .cc-avail i { display: none; }
+}

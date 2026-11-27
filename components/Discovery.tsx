@@ -581,7 +581,7 @@ export function Discovery({ locale, initialArea, initialCatalog = null }: { loca
                       <p className={`cc-avail ${p.available ? 'is-on' : 'is-off'}`}>
                         <i aria-hidden="true" />
                         <span className="cc-status-full">{p.available ? t(locale, 'متاح حسب آخر تحديث', 'Available per latest update') : t(locale, 'غير متاح حاليًا', 'Currently unavailable')}</span>
-                        <span className="cc-status-short">{p.available ? t(locale, 'متاح', 'Available') : t(locale, 'غير متاح', 'Unavailable')}</span>
+                        <span className="cc-status-short">{p.available ? t(locale, 'متاح', 'In stock') : t(locale, 'غير متاح', 'Sold out')}</span>
                       </p>
                       <WhatsAppLink number={s.whatsapp} locale={locale} compact shortLabel={t(locale, 'راسل المحل', 'Message')} />
                     </div>
