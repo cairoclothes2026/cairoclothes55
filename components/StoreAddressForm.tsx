@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import type { Locale } from '@/lib/catalog';
+import { areas, type Locale } from '@/lib/catalog';
 
-type StoreAddresses = { address_ar: string; address_en: string };
+type StoreAddresses = { area_id: string; address_ar: string; address_en: string };
 
 export function StoreAddressForm({ locale, store, onSave }: {
   locale: Locale;
@@ -20,12 +20,14 @@ export function StoreAddressForm({ locale, store, onSave }: {
     const fields = new FormData(event.currentTarget);
     const addressAr = String(fields.get('address_ar') ?? '').trim();
     const addressEn = String(fields.get('address_en') ?? '').trim();
+    const area = String(fields.get('area_id') ?? '');
     const changes = {
+      area_id: area && area !== store.area_id ? area : undefined,
       address_ar: addressAr && addressAr !== store.address_ar.trim() ? addressAr : undefined,
       address_en: addressEn && addressEn !== store.address_en.trim() ? addressEn : undefined,
     };
-    if (!changes.address_ar && !changes.address_en) {
-      setNotice({ kind: 'error', text: tx('أدخل عنوانًا جديدًا في إحدى الخانتين على الأقل.', 'Enter a new address in at least one field.') });
+    if (!changes.area_id && !changes.address_ar && !changes.address_en) {
+      setNotice({ kind: 'error', text: tx('اختر منطقة أخرى أو عدّل العنوان.', 'Choose another area or edit the address.') });
       return;
     }
 
@@ -56,12 +58,17 @@ export function StoreAddressForm({ locale, store, onSave }: {
           <p>{tx('عدّل العنوان المكتوب في صفحة المحل. اترك إحدى الخانتين فارغة للاحتفاظ بعنوانها الحالي.', 'Edit the address shown on the store page. Leave either field blank to keep its current address.')}</p>
         </div>
       </div>
-      <form className="merchant-location-form" key={JSON.stringify([store.address_ar, store.address_en])} onSubmit={save}>
+      <form className="merchant-location-form" key={JSON.stringify([store.area_id, store.address_ar, store.address_en])} onSubmit={save}>
+        <label htmlFor="store-area">{tx('منطقة المحل', 'Store area')}</label>
+        <select id="store-area" name="area_id" defaultValue={store.area_id} disabled={saving}>
+          {areas.map(area => <option key={area.id} value={area.id}>{tx(area.ar, area.en)}</option>)}
+          {!areas.some(area => area.id === store.area_id) && <option value={store.area_id}>{store.area_id}</option>}
+        </select>
         <label htmlFor="store-address-ar">{tx('العنوان بالعربية', 'Address in Arabic')}</label>
         <input id="store-address-ar" name="address_ar" dir="rtl" maxLength={240} defaultValue={store.address_ar} disabled={saving}/>
         <label htmlFor="store-address-en">{tx('العنوان بالإنجليزية', 'Address in English')}</label>
         <input id="store-address-en" name="address_en" dir="ltr" maxLength={240} defaultValue={store.address_en} disabled={saving}/>
-        <button className="primary-btn" type="submit" disabled={saving}>{saving ? tx('جارٍ الحفظ…', 'Saving…') : tx('حفظ العنوان', 'Save address')}</button>
+        <button className="primary-btn" type="submit" disabled={saving}>{saving ? tx('جارٍ الحفظ…', 'Saving…') : tx('حفظ المنطقة والعنوان', 'Save area and address')}</button>
         {notice && <p className={`admin-state is-${notice.kind}`} role={notice.kind === 'error' ? 'alert' : 'status'}>{notice.text}</p>}
       </form>
     </section>

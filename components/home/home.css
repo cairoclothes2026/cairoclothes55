@@ -1550,14 +1550,23 @@ html[lang^="en"] body .cc-home[lang="en"] *:not(.cc-wordmark):not(.cc-wordmark *
   .cc-phone-area svg { flex: none; }
   .cc-phone-area span { overflow: hidden; text-overflow: ellipsis; }
   .cc-home .cc-store-area, .cc-home .cc-card .cc-store-link, .cc-status-full,
-  .cc-contact-row .whatsapp-full-label, .cc-contact-row .cc-whatsapp svg { display: none; }
+  .cc-contact-row .whatsapp-full-label { display: none; }
   .cc-status-short, .cc-contact-row .whatsapp-short-label { display: inline; }
-  .cc-home .cc-grid .cc-contact-row .cc-whatsapp { min-height: 30px; padding: 2px; font-size: 10px; }
+  .cc-home .cc-grid .cc-contact-row .cc-whatsapp { min-height: 30px; padding: 2px; gap: 2px; font-size: 10px; font-weight: 700; }
+  .cc-contact-row .cc-whatsapp svg { order: 1; width: 12px; height: 12px; }
+  .cc-home .cc-contact-row { margin-inline: -4px; }
   .cc-home .cc-grid .cc-contact-row .cc-avail { gap: 2px; font-size: 10px; }
   .cc-contact-row .cc-avail i { width: 4px; height: 4px; }
   .cc-home .cc-store-line b { text-decoration: underline; text-underline-offset: 2px; }
 }
 @media (max-width: 360px) {
+  .cc-home .cc-grid { margin-inline: -8px; gap: 4px; }
+  .cc-home .cc-contact-row { gap: 0; }
+  .cc-home .cc-grid .cc-contact-row .cc-whatsapp { gap: 1px; padding-inline: 1px; }
   .cc-home[lang='en'] .cc-card-body { padding-inline: 3px; }
   .cc-home[lang='en'] .cc-contact-row .cc-avail i { display: none; }
+}
+@media (max-width: 600px) {
+  html[lang='en'] .cc-home .cc-grid .cc-card .cc-contact-row .cc-whatsapp,
+  html[lang='en'] .cc-home .cc-grid .cc-card .cc-contact-row .whatsapp-short-label { font-weight: 700 !important; }
 }

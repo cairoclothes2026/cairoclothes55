@@ -1,3 +1,4 @@
+import { areas } from '@/lib/catalog';
 import { storeContactNumber } from '@/lib/whatsapp';
 import { NextResponse, type NextRequest } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase-server';
@@ -14,7 +15,7 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: 'invalid_request' }, { status: 400 });
   }
 
-  const { store_id, address_ar, address_en, phone, whatsapp } = payload as Record<string, unknown>;
+  const { store_id, area_id, address_ar, address_en, phone, whatsapp } = payload as Record<string, unknown>;
   if (typeof store_id !== 'string' || !uuidPattern.test(store_id)) {
     return NextResponse.json({ error: 'invalid_store' }, { status: 400 });
   }
@@ -27,7 +28,13 @@ export async function PATCH(request: NextRequest) {
     }
     addresses[key] = value.trim();
   }
-  const updates: { address_ar?: string; address_en?: string; phone?: string | null; whatsapp?: string | null } = { ...addresses };
+  const updates: { area_id?: string; address_ar?: string; address_en?: string; phone?: string | null; whatsapp?: string | null } = { ...addresses };
+  if (area_id !== undefined) {
+    if (typeof area_id !== 'string' || !areas.some(area => area.id === area_id)) {
+      return NextResponse.json({ error: 'invalid_area' }, { status: 400 });
+    }
+    updates.area_id = area_id;
+  }
   if (phone !== undefined || whatsapp !== undefined) {
     const value = phone !== undefined ? phone : whatsapp;
     const number = typeof value === 'string' ? storeContactNumber(value) : '';
@@ -57,10 +64,15 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: 'store_access_denied' }, { status: 403 });
     }
 
+    if (updates.area_id) {
+      const { data: area, error } = await supabase.from('areas').select('id').eq('id', updates.area_id).eq('active', true).maybeSingle();
+      if (error) return NextResponse.json({ error: 'area_unavailable' }, { status: 503 });
+      if (!area) return NextResponse.json({ error: 'invalid_area' }, { status: 400 });
+    }
     const { data, error } = await supabase.from('stores')
       .update(updates)
       .eq('id', store_id)
-      .select('address_ar,address_en,phone,whatsapp')
+      .select('area_id,address_ar,address_en,phone,whatsapp')
       .maybeSingle();
     if (error) return NextResponse.json({ error: 'address_not_saved' }, { status: 503 });
     if (!data) return NextResponse.json({ error: 'store_not_found' }, { status: 404 });

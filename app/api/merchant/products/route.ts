@@ -148,7 +148,7 @@ export async function GET(request: NextRequest) {
 
     const { data: stores, error: storesError } = await access.supabase
       .from('stores')
-      .select('id,slug,name_ar,name_en,status,location_url,address_ar,address_en,phone,whatsapp')
+      .select('id,slug,name_ar,name_en,status,location_url,area_id,address_ar,address_en,phone,whatsapp')
       .in('id', storeIds)
       .order('created_at', { ascending: false });
     if (storesError) return NextResponse.json({ error: 'stores_unavailable' }, { status: 503 });

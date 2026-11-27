@@ -17,7 +17,7 @@ import { StoreAddressForm } from '@/components/StoreAddressForm';
 import { StorePhoneForm } from '@/components/StorePhoneForm';
 import { PageBrand } from '@/components/PageBrand';
 
-type StoreRow = { id: string; slug: string; name_ar: string; name_en: string; address_ar: string; address_en: string; whatsapp: string | null; phone: string | null; status: string; location_url: string | null; member_role: 'owner' | 'manager' };
+type StoreRow = { area_id: string; id: string; slug: string; name_ar: string; name_en: string; address_ar: string; address_en: string; whatsapp: string | null; phone: string | null; status: string; location_url: string | null; member_role: 'owner' | 'manager' };
 type ProductRow = {
   clicks?: number | null;
   piece_type: string | null; pattern: string | null; fabric: string | null; colors: string[];
