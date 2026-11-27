@@ -567,23 +567,25 @@ export function Discovery({ locale, initialArea, initialCatalog = null }: { loca
                     </button>
                   </div>
                   <div className="cc-card-body">
-                    <p className="cc-card-cat">{ar ? CATEGORY_LABEL[p.category].ar : CATEGORY_LABEL[p.category].en}</p>
+                    <p className="cc-card-cat">{ar ? CATEGORY_LABEL[p.category].ar : CATEGORY_LABEL[p.category].en}<span className="cc-phone-area" title={areaName(s.areaId)}><MapPin size={11} aria-hidden="true" /><span>{areaName(s.areaId)}</span></span></p>
                     <div className="cc-card-title">
                       <h3>{name}</h3>
                       <span className="cc-price-tag">{(p.discountPercent ?? 0) > 0 ? <><del>{money(p.price)}</del><b>{money(salePrice(p.price, p.discountPercent))}</b></> : money(p.price)}</span>
                     </div>
                     <a className="cc-store-line" href={`/${locale}/stores/${s.slug}`}>
                       <StoreIcon size={14} aria-hidden="true" /><b>{ar ? s.ar : s.en}</b>
-                      <span aria-hidden="true">·</span>
-                      <MapPin size={13} aria-hidden="true" />{areaName(s.areaId)}
+                      <span className="cc-store-area"><span aria-hidden="true">·</span>
+                      <MapPin size={13} aria-hidden="true" />{areaName(s.areaId)}</span>
                     </a>
-                    <p className={`cc-avail ${p.available ? 'is-on' : 'is-off'}`}>
-                      <i aria-hidden="true" />
-                      {p.available
-                        ? isDemo ? t(locale, 'متاح حسب آخر تحديث', 'Available per latest update') : t(locale, 'متاح حسب آخر تحديث', 'Available per latest update')
-                        : t(locale, 'غير متاح حاليًا', 'Currently unavailable')}
-                    </p>
-                    <WhatsAppLink number={s.whatsapp} locale={locale} /><div className="cc-card-actions">
+                    <div className="cc-contact-row">
+                      <p className={`cc-avail ${p.available ? 'is-on' : 'is-off'}`}>
+                        <i aria-hidden="true" />
+                        <span className="cc-status-full">{p.available ? t(locale, 'متاح حسب آخر تحديث', 'Available per latest update') : t(locale, 'غير متاح حاليًا', 'Currently unavailable')}</span>
+                        <span className="cc-status-short">{p.available ? t(locale, 'متاح', 'Available') : t(locale, 'غير متاح', 'Unavailable')}</span>
+                      </p>
+                      <WhatsAppLink number={s.whatsapp} locale={locale} compact shortLabel={t(locale, 'راسل المحل', 'Message')} />
+                    </div>
+                    <div className="cc-card-actions">
                       <button type="button" className={`cc-compare-btn ${isCompared ? 'is-active' : ''}`} aria-pressed={isCompared} disabled={full} onClick={() => toggleCompare(p.id)} title={full ? t(locale, 'يمكن مقارنة ثلاث قطع كحد أقصى', 'You can compare up to three pieces') : undefined}>
                         {isCompared ? <Check size={15} aria-hidden="true" /> : <CompareScale size={17} />}
                         {isCompared ? t(locale, 'ضمن المقارنة', 'Comparing') : t(locale, 'قارن', 'Compare')}

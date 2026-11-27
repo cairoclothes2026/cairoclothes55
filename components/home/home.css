@@ -1537,3 +1537,23 @@ html[lang^="en"] body .cc-home[lang="en"] *:not(.cc-wordmark):not(.cc-wordmark *
 @media (max-width: 600px) {
   .cc-home .cc-home-first-screen > section.cc-hero { display: none !important; }
 }
+
+.cc-contact-row, .cc-store-area { display: contents; }
+.cc-phone-area, .cc-status-short, .cc-contact-row .whatsapp-short-label { display: none; }
+@media (max-width: 600px) {
+  .cc-home .cc-card-cat, .cc-home .cc-contact-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2px; white-space: nowrap;
+  }
+  .cc-home .cc-card-cat { font-size: 11px; }
+  .cc-phone-area { display: inline-flex; align-items: center; min-width: 0; gap: 1px; font-size: 10px; color: var(--cc-muted); }
+  .cc-phone-area svg { flex: none; }
+  .cc-phone-area span { overflow: hidden; text-overflow: ellipsis; }
+  .cc-home .cc-store-area, .cc-home .cc-card .cc-store-link, .cc-status-full,
+  .cc-contact-row .whatsapp-full-label, .cc-contact-row .cc-whatsapp svg { display: none; }
+  .cc-status-short, .cc-contact-row .whatsapp-short-label { display: inline; }
+  .cc-home .cc-grid .cc-contact-row .cc-whatsapp { min-height: 30px; padding: 2px; font-size: 10px; }
+  .cc-home .cc-grid .cc-contact-row .cc-avail { gap: 2px; font-size: 10px; }
+  .cc-contact-row .cc-avail i { width: 4px; height: 4px; }
+  .cc-home .cc-store-line b { text-decoration: underline; text-underline-offset: 2px; }
+}
